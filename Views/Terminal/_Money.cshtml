@@ -1,0 +1,34 @@
+﻿<section id="money-block" class="money-block" ng-show="views.activeView() == 'money'"
+         ng-controller="MoneyController as money">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Оплата билетов</h2>
+                <h3 class="section-subheading text-muted">
+                    Терминал принимает купюры: 1000 рублей, 5000 рублей.<br />
+                    Терминал может дать сдачу: {{money.inRecycler * 1000}} рублей<br />
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 style="color: #fff;">
+                    Стоимость билетов: {{money.priceToPay()}} рублей<br/>
+                    Вы внесли: {{money.moneyReceived}} рублей<br/>
+                    Осталось внести: {{money.priceToPay() - money.moneyReceived}} рублей<br/>
+                </h1>
+
+                @*<a href="#" class="btn btn-danger" ng-click="startMoneyDetecting()">START</a>
+                    <a href="#" class="btn btn-danger" ng-click="stopMoneyDetecting()">STOP</a>*@
+
+                <a href="#" class="btn btn-danger" ng-click="money.return()">ВЕРНУТЬ ДЕНЬГИ</a>
+
+                @if (IsDebug)
+                {
+                    <a href="#" class="btn btn-warning" ng-click="money.buy()">ДЕНЬГИ ВНЕСЕНЫ (ОТЛАДКА)</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

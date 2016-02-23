@@ -1,0 +1,139 @@
+﻿@model PhaseTicket.Models.XML.GetOrderInfo.GetOrderInfoData
+
+@{
+    Layout = null;
+    var commonTicketInfo = Model.Tickets.First();
+}
+
+<html>
+
+<head>
+    <title>Print tickets</title>
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap/css/bootstrap-theme.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<h1>Маршрут квитанция</h1>
+<h4>ООО "ФазИнжиниринг" тел. +7 968 451 2404</h4>
+
+@foreach (var ticket in Model.Tickets)
+{
+
+    <h2>Пассажир: @ticket.FName @ticket.LName (@ticket.Gender)</h2>
+    <h4>Билет: @ticket.TicketNumber (@Model.CreatedDate)</h4>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Вылет</th>
+            <th>Прибытие</th>
+            <th>Перевозчик</th>
+            <th>Рейс</th>
+            <th>Класс</th>
+            <th>Самолет</th>
+        </tr>
+        </thead>
+
+        @foreach (var trip in Model.Trips)
+        {
+
+            <tr>
+                <td>@trip.StartCity.Name, @trip.StartAirp.Name
+                    @if (!string.IsNullOrWhiteSpace(trip.StartTerminal))
+                    {
+                        <span>, Терминал @trip.StartTerminal</span>
+                    }
+                </td>
+                <td>
+                    @trip.EndCity.Name, @trip.EndAirp.Name
+                    @if (!string.IsNullOrWhiteSpace(trip.EndTerminal))
+                    {
+                        <span>, Терминал @trip.EndTerminal</span>
+                    }
+                </td>
+                <td>
+                    @trip.StartTime
+                </td>
+                <td>
+                    @trip.EndTime
+                </td>
+                <td>@trip.AirCompany.Name @if (!string.IsNullOrWhiteSpace(trip.Carrier))
+                                          {
+                                              @trip.Carrier
+                                          }</td>
+                <td>@trip.FlightNumber</td>
+                <td>@trip.Class.ClassName</td>
+                <td>@trip.Airplane.Name</td>
+            </tr>
+        }
+    </table>
+
+
+}
+
+<h2>Общая информация</h2>
+
+<table class="table table-striped">
+    <tr>
+        <td colspan="2">
+            @commonTicketInfo.Receipt.Receipts[0].AgencyName (@commonTicketInfo.Receipt.Receipts[0].AgencyIATANum)
+        </td>
+
+        <td>Тариф:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].BaseAmount</td>
+
+        <td>Строка расчета:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].FareCalc</td>
+    </tr>
+    <tr>
+        <td>Перевозчик:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].PlatingAircompany</td>
+        <td>Таксы/Сборы:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].Taxes</td>
+        <td>Служебная информация:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].Endorsment</td>
+    </tr>
+    <tr>
+        <td>Валюта агенства:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].Currency</td>
+        <td>Тариф и таксы:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].TotalAmount</td>
+        <td>PNR:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].PNR</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>Партнерский сбор:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].MarginsAmount</td>
+        <td>VendorPNR:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].VendorPNR</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>Тариф, таксы и сборы:</td>
+        <td>@commonTicketInfo.Receipt.Receipts[0].TotalAmountWithMargins</td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+
+<h3>Примечания</h3>
+<p>
+    Для регистрации в аэропорту необходимо предъявить паспорт
+    Номер Вашего заказа <b>@Model.OrderNumber</b>,
+    пожалуйста используйте его для обращения в службу технической поддержки. Номер телефона
+    технической поддержки <b>+7 968 451 2404</b>
+</p>
+
+</body>
+
+
+</html>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CommandService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:34765/DeviceCommander?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:34765/DeviceCommander?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICommandService_EnableMoneyReceiving_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableMoneyReceiving" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_EnableMoneyReceiving_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableMoneyReceivingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_DisableMoneyReceiving_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableMoneyReceiving" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_DisableMoneyReceiving_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableMoneyReceivingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_RecyclerStoredCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecyclerStoredCount" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_RecyclerStoredCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecyclerStoredCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_GetSessionMoneyReceived_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionMoneyReceived" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_GetSessionMoneyReceived_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionMoneyReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_ReturnSessionMoney_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnSessionMoney" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_ReturnSessionMoney_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnSessionMoneyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_FlushPaymentSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:FlushPaymentSession" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_FlushPaymentSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FlushPaymentSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_ClearRecycler_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearRecycler" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_ClearRecycler_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearRecyclerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_Change_InputMessage">
+    <wsdl:part name="parameters" element="tns:Change" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_Change_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_PrintUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintUrl" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_PrintUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_ShowVKP80DriverSetup_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShowVKP80DriverSetup" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_ShowVKP80DriverSetup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShowVKP80DriverSetupResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_PrintCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintCheck" />
+  </wsdl:message>
+  <wsdl:message name="ICommandService_PrintCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrintCheckResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICommandService">
+    <wsdl:operation name="EnableMoneyReceiving">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/EnableMoneyReceiving" message="tns:ICommandService_EnableMoneyReceiving_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/EnableMoneyReceivingResponse" message="tns:ICommandService_EnableMoneyReceiving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableMoneyReceiving">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/DisableMoneyReceiving" message="tns:ICommandService_DisableMoneyReceiving_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/DisableMoneyReceivingResponse" message="tns:ICommandService_DisableMoneyReceiving_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecyclerStoredCount">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/RecyclerStoredCount" message="tns:ICommandService_RecyclerStoredCount_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/RecyclerStoredCountResponse" message="tns:ICommandService_RecyclerStoredCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionMoneyReceived">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/GetSessionMoneyReceived" message="tns:ICommandService_GetSessionMoneyReceived_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/GetSessionMoneyReceivedResponse" message="tns:ICommandService_GetSessionMoneyReceived_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnSessionMoney">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/ReturnSessionMoney" message="tns:ICommandService_ReturnSessionMoney_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/ReturnSessionMoneyResponse" message="tns:ICommandService_ReturnSessionMoney_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FlushPaymentSession">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/FlushPaymentSession" message="tns:ICommandService_FlushPaymentSession_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/FlushPaymentSessionResponse" message="tns:ICommandService_FlushPaymentSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearRecycler">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/ClearRecycler" message="tns:ICommandService_ClearRecycler_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/ClearRecyclerResponse" message="tns:ICommandService_ClearRecycler_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Change">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/Change" message="tns:ICommandService_Change_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/ChangeResponse" message="tns:ICommandService_Change_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintUrl">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/PrintUrl" message="tns:ICommandService_PrintUrl_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/PrintUrlResponse" message="tns:ICommandService_PrintUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowVKP80DriverSetup">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/ShowVKP80DriverSetup" message="tns:ICommandService_ShowVKP80DriverSetup_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/ShowVKP80DriverSetupResponse" message="tns:ICommandService_ShowVKP80DriverSetup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintCheck">
+      <wsdl:input wsam:Action="http://tempuri.org/ICommandService/PrintCheck" message="tns:ICommandService_PrintCheck_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICommandService/PrintCheckResponse" message="tns:ICommandService_PrintCheck_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICommandService" type="tns:ICommandService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EnableMoneyReceiving">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/EnableMoneyReceiving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableMoneyReceiving">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/DisableMoneyReceiving" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecyclerStoredCount">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/RecyclerStoredCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionMoneyReceived">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/GetSessionMoneyReceived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnSessionMoney">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/ReturnSessionMoney" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FlushPaymentSession">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/FlushPaymentSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearRecycler">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/ClearRecycler" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Change">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/Change" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintUrl">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/PrintUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowVKP80DriverSetup">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/ShowVKP80DriverSetup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintCheck">
+      <soap:operation soapAction="http://tempuri.org/ICommandService/PrintCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandService">
+    <wsdl:port name="BasicHttpBinding_ICommandService" binding="tns:BasicHttpBinding_ICommandService">
+      <soap:address location="http://localhost:34765/DeviceCommander" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,92 @@
+﻿@model dynamic
+
+<div class="panel">
+    <div class="panel-heading">
+        <h2>Devices test page</h2>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li>
+                Recycler stored count: <span id="rsc"></span>
+            </li>
+            <li>
+                Money received: <span id="mr"></span>
+            </li>
+        </ul>
+
+        <div>
+
+            <h1>
+                NV11:
+            </h1>
+            <input type="button" onclick="Refresh()"
+                   value="Refresh" class="btn btn-info" />
+
+            <input type="button" onclick="PE.Devices.EnableMoneyReceiving()"
+                   value="Enable money receiving" class="btn btn-info" />
+
+            <input type="button" onclick=" PE.Devices.DisableMoneyReceiving(); "
+                   value="Disable money receiving" class="btn btn-info" />
+
+            <input type="button" onclick=" PE.Devices.ReturnPushedMoney(); "
+                   value="Return session money" class="btn btn-info" />
+
+            @*<input type="button" onclick=" PE.Devices.SendOneNote(); "
+                   value="Send one note" class="btn btn-info" />*@
+
+            @*<input type="button" onclick=" PE.Devices.DropNotesCount(); "
+                   value="Flush session" class="btn btn-info"/>*@
+
+            <input type="button" onclick=" PE.Devices.ClearRecycler(); "
+                   value="Clear recycler" class="btn btn-info" />
+
+            <h1>
+                VKP80-II
+            </h1>
+            <input type="button" onclick="PrintCheck()"
+                   value="Print URL" class="btn btn-info" />
+
+            <h1>
+                Printer:
+            </h1>
+            <input type="button" onclick="PrintUrl()"
+                   value="Print check" class="btn btn-info" />
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function Refresh() {
+        var rsc = PE.Devices.RecyclerStoredCount();
+        $("#rsc").text(rsc);
+        var mr = PE.Devices.GetMoneyReceived();
+        $("#mr").text(mr);
+    };
+
+    function SendNotes() {
+        var cnt = prompt("Count to pull:", "1");
+
+        if (cnt != null) {
+            PE.Devices.SendNotes(cnt);
+        }
+    };
+
+    function PrintUrl() {
+        var url = prompt("Url to print:", "");
+
+        if (url != null) {
+            PE.Devices.PrintUrl(url);
+        }
+    }
+
+    function PrintCheck() {
+        var amount = prompt("Amount:", "14317");
+        if (amount != null) {
+            var comission = prompt("Comission:", "683");
+            if (comission != null) {
+                PE.Devices.PrintCheck(amount, comission);
+            }
+        }
+    }
+</script>

@@ -1,0 +1,109 @@
+﻿<div class="container" id="tickets-block" ng-show="views.activeView() == 'tickets'"
+     ng-controller="TicketsController as tickets">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel text-center">
+                <h1 class="section-heading">Счастливого пути!</h1>
+                <small>Печать маршрут квитанции...</small>
+                <h2>Ваши билеты:</h2>
+
+                <div class="panel panel-info" ng-repeat="ticket in tickets.orderInfo.Tickets">
+
+                    <div class="panel-heading text-left">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                {{ticket.Receipt.Receipts[0].AgencyName}} ({{ticket.Receipt.Receipts[0].AgencyIATANum}})<br/>
+                                Перевозчик: {{ticket.Receipt.Receipts[0].PlatingAircompany}}<br/>
+                                Имя пассажира: {{ticket.FName}} {{ticket.MName}} {{ticket.LName}} ({{ticket.Gender}})<br/>
+                                Билет: {{ticket.TicketNumber}} ({{tickets.orderInfo.CreatedDate}})<br/>
+                                Валюта агенства: {{ticket.Receipt.Receipts[0].Currency}}<br/>
+
+                            </div>
+                            <div class="col-md-3">
+
+                                Тариф: {{ticket.Receipt.Receipts[0].BaseAmount}}<br/>
+                                Таксы/Сборы: {{ticket.Receipt.Receipts[0].Taxes}}<br/>
+                                Тариф и таксы: {{ticket.Receipt.Receipts[0].TotalAmount}}<br/>
+                                Партнерский сбор: {{ticket.Receipt.Receipts[0].MarginsAmount}}<br/>
+                                Тариф, таксы и сборы: {{ticket.Receipt.Receipts[0].TotalAmountWithMargins}}<br/>
+
+                            </div>
+                            <div class="col-md-4">
+                                Строка расчета: {{ticket.Receipt.Receipts[0].FareCalc}}<br/>
+
+                                Служебная информация: {{ticket.Receipt.Receipts[0].Endorsment}}<br/>
+                                PNR: {{ticket.Receipt.Receipts[0].PNR}}<br/>
+                                VendorPNR: {{ticket.Receipt.Receipts[0].VendorPNR}}<br/>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="panel-body" ng-repeat="trip in tickets.orderInfo.Trips">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>Вылет:</td>
+                                <td>
+                                    <b>
+                                        {{trip.StartCity.Name}}, {{trip.StartAirp.Name}},
+                                        <span ng-show="trip.StartTerminal != null">
+                                            Терминал: {{trip.StartTerminal}}
+                                        </span>
+
+                                        <br/> {{trip.StartTime}}
+                                    </b>
+                                </td>
+                                <td>Прибытие:</td>
+                                <td>
+                                    <b>
+                                        {{trip.EndCity.Name}}, {{trip.EndAirp.Name}},
+                                        <span ng-show="trip.EndTerminal != null">Терминал: {{trip.EndTerminal}}</span>
+                                        <br/> {{trip.EndTime}}
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Перевозчик:</td>
+                                <td><b>{{trip.AirCompany.Name}} ({{trip.Carrier}})</b></td>
+                                <td>Рейс:</td>
+                                <td><b>{{trip.FlightNumber}}</b></td>
+                            </tr>
+                            <tr>
+                                <td>Класс:</td>
+                                <td><b>{{trip.Class.ClassName}}</b></td>
+                                <td>Самолет</td>
+                                <td><b>{{trip.Airplane.Name}}</b></td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                    <hr/>
+
+                </div>
+
+                <div class="panel-body">
+
+                    <h2>Примечания</h2>
+                    <div class="alert alert-danger">
+                        Для регистрации в аэропорту необходимо предъявить паспорт
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Номер Вашего заказа - <strong>{{tickets.orderInfo.OrderNumber}}</strong>,
+                        пожалуйста используйте его для обращения в службу
+                        технической поддержки.
+                        Номер телефона технической поддержки <strong>{{tickets.supportPhone()}}</strong>
+                    </div>
+
+                    <button type="submit" class="btn btn-xl" ng-click="tickets.reset()">Выход</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br/><br/><br/><br/><br/>
+</div>

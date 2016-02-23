@@ -1,0 +1,42 @@
+﻿<nav class="navbar navbar-default col-md-10" role="navigation" ng-show="views.activeView() != 'search-form'">
+
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Tickets booking</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="top-nav-menu">
+            <ul class="nav navbar-nav">
+                <li ng-class="{'search-form': 'active'}[views.activeView()]">
+                    <a href="#" ng-click="views.searchForm()">Поиск рейсов</a>
+                </li>
+                <li ng-class="{'fares': 'active'}[views.activeView()]">
+                    <a href="#" ng-show="views.activeView() == 'fares' || views.activeView() == 'passengers' || views.activeView() == 'money' || views.activeView() == 'tickets'"
+                       ng-click="views.fares()">Выбор рейса</a>
+                </li>
+                <li ng-class="{'passengers': 'active'}[views.activeView()]">
+                    <a href="#" ng-show="views.activeView() == 'passengers' || views.activeView() == 'money'"
+                       ng-click="views.passengers()">Ввод данных пассажиров</a>
+                </li>
+                <li ng-class="{'money': 'active'}[views.activeView()]">
+                    <a href="#" ng-show="views.activeView() == 'money'"
+                       ng-click="views.money()">Внесение денег</a>
+                </li>
+                <li ng-class="{'tickets': 'active'}[views.activeView()]">
+                    <a href="#" ng-show="views.activeView() == 'tickets'"
+                       ng-click="views.tickets()">Печать билетов</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+ 
+</nav>

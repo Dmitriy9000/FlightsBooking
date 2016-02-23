@@ -1,0 +1,84 @@
+﻿@model dynamic
+
+<div class="panel" ng-controller="DeviceTestController as devices">
+    <div class="panel-heading">
+        <h3>Devices scenario test page</h3>
+        <hr />
+        <table class="table table-striped col-md-5">
+            <tr>
+                <td>Price:</td>
+                <td>{{devices.price}}</td>
+                <td>Money received:</td>
+                <td>{{devices.moneyReceived}}</td>
+            </tr>
+            <tr>
+                <td>Recycler stored:</td>
+                <td>{{devices.recyclerStored}} </td>
+                <td>Payment session:</td>
+                <td>{{devices.paymentSession}} </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-warning" ng-click="devices.refresh()">Refresh</button>
+                </td>
+                <td>
+                    <button class="btn btn-warning" ng-click="devices.flushPaymentSession()">Flush payment session</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" ng-click="devices.printCheck()">Print check</button>
+                </td>
+                <td>
+                    <button class="btn btn-success" ng-click="devices.printUrl()">Print URL</button>
+                </td>
+                
+            </tr>
+        </table>
+        <hr />
+    </div>
+    <div class="panel-body">
+
+        <div class="dt-input panel-danger" ng-show="devices.view == 'input'">
+            Input tickets price: <input type="text" ng-model="devices.price"/>
+            <button class="btn btn-primary" ng-click="devices.toMoney()">Take my money</button>
+        </div>
+        <div class="dt-money panel-warning" ng-show="devices.view == 'money'">
+            Please insert money: {{devices.price}}
+            <button class="btn btn-primary" ng-click="devices.return()">Return money</button>
+        </div>
+        <div class="dt-result panel-success" ng-show="devices.view == 'tickets'">
+            Complete: check change
+            <button class="btn btn-primary" ng-click="devices.reset()">Start new session</button>
+        </div>
+
+        <div>
+
+            @*<input type="button" onclick=" Refresh() "
+                       value="Refresh" class="btn btn-info"/>
+
+                <input type="button" onclick=" PE.Devices.EnableMoneyReceiving() "
+                       value="Enable money receiving" class="btn btn-info"/>
+
+                <input type="button" onclick=" PE.Devices.DisableMoneyReceiving(); "
+                       value="Disable money receiving" class="btn btn-info"/>
+
+                <input type="button" onclick=" PE.Devices.ReturnPushedMoney(); "
+                       value="Return session money" class="btn btn-info"/>
+
+                <input type="button" onclick=" PE.Devices.SendOneNote(); "
+                       value="Send one note" class="btn btn-info" />
+
+                <input type="button" onclick=" PE.Devices.DropNotesCount(); "
+                       value="Flush session" class="btn btn-info"/>
+
+                <input type="button" onclick=" PE.Devices.ClearRecycler(); "
+                       value="Clear recycler" class="btn btn-info"/>
+
+                <input type="button" onclick=" PrintCheck() "
+                       value="Print URL" class="btn btn-info"/>
+
+                <input type="button" onclick=" PrintUrl() "
+                       value="Print check" class="btn btn-info"/>*@
+
+        </div>
+    </div>
+</div>

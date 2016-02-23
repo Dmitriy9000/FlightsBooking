@@ -1,0 +1,81 @@
+﻿<div ng-show="views.activeView() == 'fares'" id="fares-block" ng-controller="FaresController as fares">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <form>
+
+                    <div class="row">
+                        <div class="alert alert-warning">Пожалуйста выберите авиакомпанию, тариф и рейсы. В стоимость билетов включена комиссия, рассчитываемая исходя из условий авиакомпании.</div>
+
+                        @*<div ng-repeat="airline in fares.Airlines">*@
+
+                        <div class="panel panel-info fare" ng-repeat="fare in fares.data">
+
+                            <div class="panel-heading">
+                                <h3>{{fare.Additional.Airline}} Тариф №{{$index+1}} </h3>
+                                <button class="btn btn-success" ng-click="fares.confirmVariants(fare.Id)">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                    Купить за {{fare.PriceWithComission | currency:"":0}} ₽
+                                    @* =  ({{fare.Price}} + {{fare.Comission}})*@
+                                </button>
+                                <button class="btn btn-info" ng-click="fares.showFareRules(fare.Id)">Условия тарифа от авиакомпании</button>
+                                @*<button>ID: {{fare.Id}}  Available: {{fare.Available}} Minseats: {{fare.MinAvailSeats}}</button>*@
+                            </div>
+
+                            <div class="panel panel-warning">
+
+                                <div class="panel-heading" ng-repeat-start="dir in fare.Additional.Dirs">
+                                    <h4>
+                                        {{dir.Variants[0].Legs[0].Departure.City}} ({{dir.Variants[0].Legs[0].Departure.Airport}})
+                                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                                        {{dir.Variants[0].Legs[0].Arrival.City}} ({{dir.Variants[0].Legs[0].Arrival.Airport}})
+                                    </h4>
+                                </div>
+
+                                <div class="panel-body" ng-repeat-end>
+
+                                    <div ng-repeat="var in dir.Variants"
+                                         class="row variant" ng-click="fares.selectDir(dir.Id, var.Id)"
+                                         ng-class="{true: 'selected-variant', false: ''}[var.selected]">
+                                        <div class="col-md-1 text-center">
+                                            &nbsp;
+                                            <span class="glyphicon glyphicon-ok"
+                                                  ng-show="var.selected"
+                                                  style="padding-top: 10px;"
+                                                  aria-hidden="true"></span>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            Вылет: <br />
+                                            <strong>
+                                                {{var.Legs[0].Departure.DayOfWeek}},
+                                                {{var.Legs[0].Departure.Date}} в {{var.Legs[0].Departure.Time}}
+                                            </strong>
+                                        </div>
+                                        <div class="col-md-3">
+                                            Самолет: <br />
+                                            <strong>{{var.Legs[0].Plane.Name}}</strong>
+                                        </div>
+                                        <div class="col-md-4">
+                                            Прибытие: <br />
+                                            <strong>
+                                                {{var.Legs[0].Departure.DayOfWeek}}, {{var.Legs[0].Arrival.Date}} в {{var.Legs[0].Arrival.Time}}
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_RulesModal")
+
+    @* to extend scrolling box *@
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+</div>
+
